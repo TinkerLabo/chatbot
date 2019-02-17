@@ -1,0 +1,184 @@
+<head>
+        <meta name="viewport" content="width=320, initial-scale=1">
+        <title>bot</title>
+    </head>
+    
+    <body>
+        <div id="wrapper">
+            <div id="moai_box" class="image">
+                <img id="Moais" src="Moai.jpg">
+            </div>
+            <div id="control">
+                <div class="content">
+                    <input type="text" id="user" placeholder="なまえ" value="権兵衛" />
+                    <input type="text" id="message" placeholder="メッセージ" value="こんにちは" />
+                    <input type="button" id="send_btn" value="送る" onclick="sendMessage()">
+                    <input type="button" id="add-button" value="Add Bubbles" onclick="addComicBubbles()">
+                    <input type="button" id="destroy-button" value="Remove Bubbles" onclick="destroy()">
+                </div>
+            </div>
+            <div id="chat_box" class="content"></div>
+            <br>
+            <div id="Moais-comic-bubbles-output"></div>
+        </div>
+    </body>
+    <script src="comicbubbles.min.js"></script>
+    <script src="comicbubbles_editor.min.js"></script>
+    <script>
+        var MoaiBubbles;
+        function addComicBubbles() {
+            MoaiBubbles = new ComicBubbles("Moais", { canvas: { readonly: false } }, {
+                bubble: [
+                    { id: 'b1', text: "hello", x: 105, y: 45, width: 'auto', height: 'auto', fontSize: '30px', background: '#8b0000', color: '#ffffff', bubbleStyle: 'speak', tailLocation: 'nw', tailX: 521, tailY: 239, visible: false }
+                ]
+            });
+            MoaiBubbles.onBubbleStateChange(function (bubbles) {
+                for (var i = 0; i < bubbles.length; i++) {
+                    var bubble = bubbles[i];
+                }
+            });
+            MoaiBubbles.onCanvasLoad(function () {
+                this.setResponsive(true); //'this' refers to MoaiBubbles
+                var Bubble1 = this.getBubbleById('b1');
+                // bubbles appear and disappear with callback functions
+                Bubble1.setClassName('Moais').delay(1000).setWidth('auto').setHeight('auto').pumpUp(
+                    function () {
+                        Bubble1.setText("this is ...");
+                    });
+                document.getElementById("add-button").className = "";
+                document.getElementById("destroy-button").className = "show";
+            });
+        }
+        function destroy() {
+            DestroyComicBubbles(MoaiBubbles);
+            document.getElementById("add-button").className = "show";
+            document.getElementById("destroy-button").className = "";
+        }
+    </script>
+    <script type="text/javascript">
+        // サーバーAPIの指定 ----(*1)
+        var api = "http://localhost:1337/api?";
+        var hadr = location.host;
+        var wsUri = "ws://localhost:1880/ws/chat";
+        var ws = new WebSocket(wsUri);
+    
+        MoaiBubbles = new ComicBubbles("Moais", { canvas: { readonly: false } }, {
+            bubble: [
+                { id: 'b1', text: "hello", x: 105, y: 45, width: 'auto', height: 'auto', fontSize: '30px', background: '#8b0000', color: '#ffffff', bubbleStyle: 'speak', tailLocation: 'nw', tailX: 521, tailY: 239, visible: false }
+            ]
+        });
+    
+    
+        function createSystemMessage(message) {
+            var message = document.createTextNode(message);
+            var messageBox = document.createElement('p');
+            messageBox.className = 'system';
+            messageBox.appendChild(message);
+            var chat = document.getElementById('chat_box');
+            chat.appendChild(messageBox);
+        }
+        function createUserMessage(user, message) {
+            var user = document.createTextNode(user + ': ');
+            var userBox = document.createElement('span');
+            userBox.className = 'username';
+            userBox.appendChild(user);
+            var message = document.createTextNode(message);
+            var messageBox = document.createElement('p');
+            messageBox.appendChild(userBox);
+            messageBox.appendChild(message);
+            var chat = document.getElementById('chat_box');
+            chat.appendChild(messageBox);
+        }
+        ws.onopen = function (ev) {
+            createSystemMessage('[接続]');
+        };
+        ws.onclose = function (ev) {
+            createSystemMessage('[切断]');
+        }
+        ws.onmessage = function (ev) {
+            var payload = JSON.parse(ev.data);
+            if (payload.user === 'bot') {
+                console.log('あなたはbotさんです！');
+                moaitalks(payload.message)
+            } else {
+                createUserMessage(payload.user, payload.message);
+                var chat = document.getElementById('chat_box');
+                chat.scrollTop = chat.scrollHeight;
+            }
+        }
+    
+        function moaitalks(message) {
+            //MoaiBubbles.setResponsive(true); //'this' refers to MoaiBubbles
+            var Bubble1 = MoaiBubbles.getBubbleById('b1');
+            // bubbles appear and disappear with callback functions
+            Bubble1.setClassName('Moais').delay(1000).setWidth('auto').setHeight('auto').pumpUp(
+                function () {
+                    Bubble1.setText(message);
+                });
+        }
+    
+        function sendMessage() {
+            var userName = document.getElementById('user').value;
+            var message = document.getElementById('message').value;
+            var payload = {
+                message: message,
+                user: userName,
+                ts: (new Date()).getTime()
+            };
+            ws.send(JSON.stringify(payload));
+    
+            // AjaxでAPIにメッセージを送信 --- (*3)
+            //http://localhost:1337/api?msg=%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+            var url = api + "msg=" + encodeURIComponent(message);
+            $ajax(url, function (xhr, txt) {
+                // ボットの発言
+                var e = JSON.parse(txt);
+                var payload = {
+                    message: e["msg"],
+                    user: "bot",
+                    ts: (new Date()).getTime()
+                };
+                ws.send(JSON.stringify(payload));
+            });
+            // message.value = "";
+        };
+        // Ajax関数 --- (*4)
+        function $ajax(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) { //通信完了
+                    if (xhr.status == 200) { //HTTPステータス200
+                        callback(xhr, xhr.responseText);
+                    }
+                }
+            };
+            xhr.send(''); // 通信を開始
+            return xhr;
+        }
+    </script>
+    <style type="text/css">
+        #wrapper {
+            background-color: #07313b;
+        }
+    
+        #moai_box {
+            box-sizing: border-box;
+            height: 50%;
+        }
+    
+        #chat_box {
+            box-sizing: border-box;
+            height: 40%;
+            overflow: auto;
+        }
+    
+        #control {
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            height: 30px;
+            width: 100%;
+            background-color: #2980b9;
+        }
+    </style>

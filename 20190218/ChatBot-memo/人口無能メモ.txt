@@ -1,0 +1,67 @@
+人口無能メモ
+
+raspberry pi
+node
+npm
+mongo
+raspberry piにmongoDBインストール
+
+$ sudo apt-get install mongodb
+$ mongod --version
+db version v2.4.14
+$ sudo service mongodb start
+
+http://irukanobox.blogspot.com/2018/05/raspberry-pipython3mongodb.html
+
+
+
+mecab
+http://handsrecs2nd.seesaa.net/article/140090025.html
+
+辞書登録
+
+{
+  "name": "simple-bot",
+  "version": "1.0.0",
+  "description": "simple bot chat server",
+  "main": "chat-server-bot.js",
+  "author": "kujirahand",
+  "license": "MIT",
+  "dependencies": {
+    "mecab-lite": "0.0.8",
+    "mongodb": "^2.0.35"
+  }
+}
+
+
+
+
+
+Node.jsからシェルコマンドを実行する
+http://tkybpp.hatenablog.com/entry/2016/04/25/163246
+
+
+
+const exec = require('child_process').exec;
+exec('ls -la ./', (err, stdout, stderr) => {
+  if (err) { console.log(err); }
+  console.log(stdout);
+});
+
+
+openjtalkを呼べないだろうか
+
+
+
+[Elm]Life Gameで生命を生み出す
+https://qiita.com/miyamo_madoka/items/2cad5473010292982303
+
+
+簡単な複雑系シミュレーション
+
+
+
+気まぐれロボット
+
+ぼっこちゃん
+

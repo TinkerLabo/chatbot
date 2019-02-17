@@ -1,0 +1,113 @@
+LionBubbles.getBubbleById('b1');
+aQ {id: "b1", x: 237.16, y: 389.06, width: 96, height: 38, …}
+NodeInsEvt: false
+action_in_progress: null
+autoHeight: true
+autoWidth: true
+baselineFromTop: 27
+bubbleStyle: 0
+callback: ƒ ()
+className: "lioness"
+color: "#ffffff"
+consoleText: "Freaks"
+delay: ƒ (bk,bl)
+draw: ƒ (bk)
+drawSelectedBubble: ƒ (bo,bn)
+ellipse: true
+fadeIn: ƒ (bj,br)
+fadeOut: ƒ (bj,br)
+fill: "#8b0000"
+fontFamily: "Arial, Helvetica, sans-serif"
+fontSize: "30px"
+fontStyle: "normal"
+fontWeight: "normal"
+frame: false
+getBackground: ƒ ()
+getBubbleSettings: ƒ ()
+getBubbleStyle: ƒ ()
+getClassName: ƒ ()
+getColor: ƒ ()
+getFontFamily: ƒ ()
+getFontSize: ƒ ()
+getFontStyle: ƒ ()
+getFontWeight: ƒ ()
+getHeight: ƒ ()
+getId: ƒ ()
+getLineHeight: ƒ ()
+getName: ƒ ()
+getOpacity: ƒ ()
+getTailLocation: ƒ ()
+getTailX: ƒ ()
+getTailY: ƒ ()
+getText: ƒ ()
+getTextAlign: ƒ ()
+getWidth: ƒ ()
+getX: ƒ ()
+getY: ƒ ()
+height: 38
+hide: ƒ (bi)
+id: "b1"
+isReadonly: ƒ ()
+isSettable: ƒ ()
+isVisible: ƒ ()
+lettersCoordinates: (6) [{…}, {…}, {…}, {…}, {…}, {…}]
+lineH: 36
+lineHeight: 1.2
+moveTo: ƒ (bs,bq,bv,bt)
+name: ""
+off: false
+offMouseEvent: ƒ (bn,bj)
+onMouseEvent: ƒ (bn,bj)
+opacity: 0.8
+postponed_actions: []
+pumpUp: ƒ (bz,bq)
+readonly: false
+remove: ƒ (bk)
+setBackground: ƒ (bi,bk)
+setBubbleStyle: ƒ (bi,bj)
+setClassName: ƒ (bj,bk)
+setColor: ƒ (bi,bk)
+setFontFamily: ƒ (bi,bj)
+setFontSize: ƒ (bi,bj)
+setFontStyle: ƒ (bi,bj)
+setFontWeight: ƒ (bi,bj)
+setHeight: ƒ (bj,bk)
+setId: ƒ (bi,bj)
+setLineHeight: ƒ (bi,bj)
+setName: ƒ (bi,bj)
+setOpacity: ƒ (bi,bj)
+setReadonly: ƒ (bi,bj)
+setSettable: ƒ (bi,bj)
+setTailLocation: ƒ (bj,bk)
+setTailX: ƒ (bi,bj)
+setTailY: ƒ (bi,bj)
+setText: ƒ (bj,bk)
+setTextAlign: ƒ (bi,bj)
+setWidth: ƒ (bj,bk)
+setX: ƒ (bi,bj)
+setY: ƒ (bi,bj)
+settable: true
+show: ƒ (bi)
+tailLocation: 0
+tailX0: 216.58
+tailX1: 0
+tailX2: 0
+tailX3: 0
+tailX4: 0
+tailX5: 0
+tailX6: 0
+tailX7: 0
+tailY0: 335.16
+tailY1: 0
+tailY2: 0
+tailY3: 0
+tailY4: 0
+tailY5: 0
+tailY6: 0
+tailY7: 0
+textAlign: "center"
+txtarea: p#lions-b1.cb-bubble-field.lioness
+width: 96
+x: 237.16
+y: 389.06
+__proto__: Object

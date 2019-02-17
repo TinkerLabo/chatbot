@@ -1,0 +1,2 @@
+{id: 'b1', className: 'Moaiess', text: "なぞなぞを出すよ", x: 105 y: 45, width: 'auto', height: 'auto', fontSize: '30px', background: '#8b0000', color: '#ffffff', bubbleStyle: 'speak', tailLocation: 'nw', tailX: 521, tailY: 239},
+{id: 'b1548595392548',           text: "なぞなぞを出すよ！", x: 105, y: 45, width: 'auto', height: 114, fontSize: '24px', fontWeight: 'bold', lineHeight: 1.4, background: '#ffa500', color: '#ffffe0', opacity: 0.44, bubbleStyle: 'speak', tailLocation: 'e', tailX: 521, tailY: 239}

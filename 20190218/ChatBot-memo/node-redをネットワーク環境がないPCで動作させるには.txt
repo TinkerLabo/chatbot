@@ -1,0 +1,31 @@
+以下断片的なメモ
+
+node-redをネットワーク環境がないPCでインストール？するには
+
+ユーザー直下にあるC:\Users\ken.yuasa\AppData\Roaming\npm\node_modules
+のアーカイブを作ってコピーすればよさそうです
+
+●設定ファイル
+
+C:\Users\ken.yuasa\.node-red\settings.js
+
+109行目あたりにある行をコピーして以下のように定義したあとnode-redを再起動すると
+以下を起点にしたWEBサーバーのようにふるまうようになります
+
+    httpStatic: '/Users/ken.yuasa/node_modules/node-red/public/',
+
+※httpStaticを指定すると、ここで指定したpathを静的なWebコンテンツとして表示できます。
+例えば/home/username/.node-red/と指定した場合、
+/home/username/.node-red/index.htmlを作成すると/へアクセスすると作成したindex.htmlが表示されます。
+
+したがってhttpStaticを指定する場合はhttpAdminRootは/より下層のpathにする必要があります。
+
+つまり、画像とか、ｊｓ、cssなんかを配置して呼び出せるようになります
+botstrapとかはあらかじめ入っているようです
+
+
+Adding ComicBubbles to a web page
+http://comicbubbles.com/tutorial
+
+
+

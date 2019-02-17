@@ -1,0 +1,60 @@
+dir
+mongodをイストールして・・・
+pathを通しておく
+
+http://kageura.hatenadiary.jp/entry/2018/01/09/Windows%E7%89%88MongoDB%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%BBMongoShell%E3%82%92%E9%80%9A%E3%81%97%E3%81%A6CRUD%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%82%92%E6%89%93
+
+
+https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-4.0.5-signed.msi/download
+
+cd nodewk\simple-bot
+
+mkdir mongodb
+
+mongod --dbpath ./mongodb
+
+
+
+
+
+cd C:\Users\ken.yuasa\nodewk\simple-bot
+
+node make-dic.js
+
+node chat-server.js
+
+
+
+mongo 
+
+show dbs
+
+> show dbs
+admin       0.000GB
+config      0.000GB
+local       0.000GB
+simple-bot  0.000GB
+
+> use simple-bot
+switched to db simple-bot
+
+使っているデータベース内のコレクションを一覧表示
+> show collections
+keywords
+（※keywordsはコレクションの名前）
+
+コレクション内のドキュメントを一覧表示します。
+> db.keywords.find()
+
+> db
+simple-bot
+
+db.keywords.find( { key:'名前' } );
+（※keywordsはコレクションの名前）
+
+db.keywords.find( { key:'です' } );
+
+>help
+
+>exit
+

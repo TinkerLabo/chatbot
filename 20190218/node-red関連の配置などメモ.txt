@@ -1,0 +1,201 @@
+node-red関連の配置などメモ
+
+
+ThisMac-507:chatbot kenyuasa$ node-red
+16 Feb 15:45:49 - [info] 
+
+Welcome to Node-RED
+===================
+
+16 Feb 15:45:49 - [info] Node-RED バージョン: v0.19.2
+16 Feb 15:45:49 - [info] Node.js  バージョン: v8.9.1
+16 Feb 15:45:49 - [info] Darwin 18.2.0 x64 LE
+16 Feb 15:45:49 - [info] パレットノードのロード
+16 Feb 15:45:50 - [warn] rpi-gpio : Raspberry Pi固有のノードを無視しました
+16 Feb 15:45:53 - [info] Dashboard version 2.9.7 started at /ui
+16 Feb 15:45:53 - [info] 設定ファイル: /Users/kenyuasa/.node-red/settings.js
+16 Feb 15:45:53 - [info] HTTP Static    : /Users/kenyuasa/node_modules/node-red/public
+16 Feb 15:45:53 - [info] コンテクストストア : 'default' [module=memory]
+16 Feb 15:45:53 - [info] ユーザディレクトリ : /Users/kenyuasa/.node-red
+16 Feb 15:45:53 - [warn] プロジェクトは無効化されています : editorTheme.projects.enabled=false
+16 Feb 15:45:53 - [info] フローファイル     : /Users/kenyuasa/.node-red/flows_ThisMac-507.local.json
+16 Feb 15:45:53 - [info] サーバは http://127.0.0.1:1880/ で実行中です
+16 Feb 15:45:53 - [warn] 
+
+---------------------------------------------------------------------
+フローのクレデンシャルファイルはシステム生成キーで暗号化されています。
+
+システム生成キーを何らかの理由で失った場合、クレデンシャルファイルを
+復元することはできません。その場合、ファイルを削除してクレデンシャルを
+再入力しなければなりません。
+
+設定ファイル内で 'credentialSecret' オプションを使って独自キーを設定
+します。変更を次にデプロイする際、Node-REDは選択したキーを用いてクレ
+デンシャルを再暗号化します。 
+
+---------------------------------------------------------------------
+
+16 Feb 15:45:53 - [info] フローを開始します
+16 Feb 15:45:53 - [info] フローを開始しました
+
+Duane Allman's Slide Solo on Layla
+https://www.youtube.com/watch?v=nLINqjptuAo
+
+
+注目すべきファイルは
+
+設定ファイル: /Users/kenyuasa/.node-red/settings.js
+ユーザディレクトリ : /Users/kenyuasa/.node-red
+HTTP Static    : /Users/kenyuasa/node_modules/node-red/public
+
+
+    httpStatic: '/Users/kenyuasa/node_modules/node-red/public',
+
+
+
+.node-red\settings.js上に読み込みたいｊｓについて設定を書く
+node-red起動時に参照可能とさせたい(requireできるようにしたいものを配置して・・・定義ファイルに記述する)
+
+functionGlobalContext: {
+    sensor1:require('./sensors/sensor1.js'),
+    sensor1:require('./simple-bot/chat-server-bot.js'),
+    sensor1:require('./simple-bot/chat-server.js'),
+    sensor1:require('./simple-bot/make-dic.js')
+    // os:require('os'),
+    // jfive:require("johnny-five"),
+    // j5board:require("johnny-five").Board({repl:false})
+},
+
+
+ThisMac-507:.node-red kenyuasa$ pwd
+/Users/kenyuasa/.node-red
+ThisMac-507:.node-red kenyuasa$ mkdir simple-bot
+ThisMac-507:.node-red kenyuasa$ open .
+
+npm init
+
+package.jsonを以下のように
+{
+  "name": "red-project",
+  "description": "A Node-RED Project",
+  "version": "0.0.1",
+  "dependencies": {
+    "node-red-contrib-scx-ibmiotapp": "0.0.49",
+    "node-red-contrib-web-worldmap": "~1.3.5",
+    "node-red-dashboard": "~2.9.7",
+    "mecab-lite": "0.0.8",
+    "mongodb": "^2.0.35"
+  },
+  "main": "settings.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ken yuasa",
+  "license": "ISC"
+}
+
+npm install
+
+
+node-red
+とすると・・・
+
+16 Feb 22:15:35 - Error: ENOENT: no such file or directory, open 'bot-dic.dat'
+    at Object.fs.openSync (fs.js:646:18)
+    at Object.fs.readFileSync (fs.js:551:33)
+    at insertKeywords (/Users/kenyuasa/.node-red/simple-bot/make-dic.js:34:16)
+    at /Users/kenyuasa/.node-red/simple-bot/make-dic.js:26:5
+    at handleCallback (/Users/kenyuasa/.node-red/node_modules/mongodb/lib/utils.
+
+
+
+/Users/kenyuasa/.node-red
+
+
+
+ThisMac-507:simple-bot kenyuasa$ pwd
+/Users/kenyuasa/.node-red/simple-bot
+ThisMac-507:simple-bot kenyuasa$ ls -al
+total 128
+drwxr-xr-x  11 kenyuasa  staff   352  2 16 21:57 .
+drwxr-xr-x  29 kenyuasa  staff   928  2 16 22:13 ..
+-rw-r--r--@  1 kenyuasa  staff  8196  2 16 21:57 .DS_Store
+-rw-r--r--@  1 kenyuasa  staff  9084  2  9 08:12 WebSocket4Node-red.txt
+-rw-r--r--@  1 kenyuasa  staff  7058  2  1 22:01 bot-dic.dat
+-rw-r--r--@  1 kenyuasa  staff  3807  2 16 10:31 chat-server-bot.js
+-rw-r--r--@  1 kenyuasa  staff  1591  2  9 08:16 chat-server.js
+-rw-r--r--@  1 kenyuasa  staff  6883  2  9 08:17 chatbot-template.txt
+-rw-r--r--@  1 kenyuasa  staff  1988  2  1 22:06 make-dic.js
+-rw-r--r--@  1 kenyuasa  staff  1615  2 16 10:33 mongo_save2File.js
+-rw-r--r--@  1 kenyuasa  staff  7613  2  9 08:14 node-redclient.html.txt
+
+
+
+Raspberry Pi2 Node.jsからMongoDBへアクセスできなくなった
+https://goodjobnahibi.blogspot.com/2018/06/raspberry-pi2-nodejsmongodb.html
+
+
+Raspberry Piに MongoDB 2.4.10を apt-getで簡単にインストールとセットアップする方法
+http://www.neko.ne.jp/~freewing/raspberry_pi/raspberry_pi_mongodb/
+
+RaspberryPi3 にMeCabをインストールする（Python3環境）
+http://min117.hatenablog.com/entry/2018/09/02/135418
+
+
+ダニエル　グーサンス　?
+
+nodeサーバーを起動する
+ThisMac-507:simple-bot kenyuasa$ mkdir mongodb
+ThisMac-507:simple-bot kenyuasa$ mongod --dbpath=./mongodb
+
+
+https://github.com/TinkerLabo/chatbot
+
+
+
+msg apiのテストはどうする
+辞書登録apiのテスト
+open jtalk
+raspberry piでの動作（かくサービスの自動起動）
+
+
+
+http://localhost:1337/api
+
+http://localhost:1337/api?msg=%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF
+http://localhost:1337/reg?line=a,b,c,d,e,f,g
+
+
+localhostとしてある部分を書き換える
+raspberrypiの
+
+
+http://127.0.0.1:1880/#flow/881f2bc6.3d5978
+
+
+
+
+
+
+http://localhost:1337/reg?msg=a,b,c,d,e,f,g
+
+http://localhost:1337/reg?msg=ジャンケン,0,*, チョキ
+
+http://localhost:1337/reg?msg=ジャンケン,0,*, パー
+
+
+http://localhost:1337/reg?msg=%E5%A4%A9%E6%B0%97,%E6%99%B4%E3%82%8C
+
+http://localhost:1337/save?file=test.txt
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+パソコンにNode-REDをインストールする手順
+
+CPU 64bit
+os windows10
+
+
+Step1
+Node.js install
+https://nodejs.org/ja/
+version 6.x LTSをダウンロードする
+
+node-v6.10.3-x64.msiを実行
+
+next ライセンスの同意
+インストール先デフォルトで　next
+
+インストールする機能　そのままの設定で　next
+
+install(何分かかるか) 最後に　finish
+
+
+Step2
+Node-Redのインストール
+
+以下のインストールコマンドで
+npm install -g node-red
+
+（ネットワーク環境がない場合どうすればいいか？）
+.node-redのアーカイブをコピーすれば良さそうな気がするが？
+
+アンインストール
+npm uninstall -g node-red
+
+
+
+
+
+
+
+ 
+

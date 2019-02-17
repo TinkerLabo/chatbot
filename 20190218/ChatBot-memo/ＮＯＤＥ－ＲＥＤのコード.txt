@@ -1,0 +1,351 @@
+ＮＯＤＥ－ＲＥＤのコード
+
+●ws のfunctionの中身
+-----------------------------------------------------------------------------------------
+delete msg._session;
+return msg;
+-----------------------------------------------------------------------------------------
+
+●templateの中身
+-----------------------------------------------------------------------------------------
+<head>
+  <meta name="viewport" content="width=320, initial-scale=1">
+  <title>Chat</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="chat_box" class="content">
+    </div>
+  <div>
+    <button id="add-button" class="show" type="button" onclick="addComicBubbles()">Add ComicBubbles to the picture</button>
+    <button id="destroy-button" type="button" onclick="destroy()">Remove ComicBubbles</button>
+  </div>
+  <div class="image">
+    <img id="Moais" src="Moai.jpg">
+  </div>
+  <div id="lions-comic-bubbles-output"></div>
+  <br>
+    <div id="footer">
+      <div class="content">
+        <input type="text" id="user" placeholder="Who are you?" />
+        <input type="text" id="message" placeholder="What do you want to say?" />
+        <input type="button" id="send_btn" value="Send" onclick="sendMessage()">
+      </div>
+    </div>
+  </div>
+</body>
+<script src="comicbubbles.min.js"></script>
+<script src="comicbubbles_editor.min.js"></script>
+  <script>
+    var LionBubbles;
+
+    function addComicBubbles() {
+
+      LionBubbles = new ComicBubbles("lions", { canvas: { readonly: false } }, {
+        bubble: [
+          { id: 'b1', text: "marvelous\nweather", x: 242, y: 397, width: 144, height: 69, fontSize: '30px', background: '#8b0000', color: '#ffffff', bubbleStyle: 'speak', tailLocation: 'nw', tailX: 221, tailY: 342, visible: false },
+          { id: 'b2', text: "Who\ncares?", className: 'lion', lineHeight: 1, x: 483, y: 50, width: 'auto', height: 'auto', fontSize: '30px', background: '#6b8e23', color: '#ffffff', bubbleStyle: 'think', tailLocation: 's', tailX: 533, tailY: 177, visible: false }
+        ]
+      });
+
+      LionBubbles.onBubbleStateChange(function (bubbles) {
+        for (var i = 0; i < bubbles.length; i++) {
+          var bubble = bubbles[i];
+          //onBubbleStateChange can help save data (bubble.x, bubble.y, bubble.text, etc.) with ajax to a database 
+        }
+      });
+
+      //Responsiveness
+      //To adjust bubbles position: use canvas{responsive: true} or setResponsive(true)
+      //To resize bubbles:
+      //1. Set bubble properties: width: 'auto', height: 'auto', className: 'myClass' (setWidth, setHeight, setClassName)
+      //2. Use 'myClass' in your media query to override bubble fontSize setting
+      //   e.g. @media screen and (max-width: 600px) { .myClass {font-size: 17px !important;} }
+
+      LionBubbles.onCanvasLoad(function () {
+
+        this.setResponsive(true); //'this' refers to LionBubbles
+
+        var Bubble1 = this.getBubbleById('b1');
+        var Bubble2 = this.getBubbleById('b2');
+
+        // bubbles appear and disappear with callback functions
+        Bubble1.setClassName('lioness').delay(1000).setWidth('auto').setHeight('auto').pumpUp(function () {
+          Bubble2.delay(1000).fadeIn(function () {
+            Bubble1.delay(2000).fadeOut();
+            this.delay(2000).fadeOut(function () { //'this' refers to Bubble2
+              Bubble1.delay(1000).setText("I am\nhungry").pumpUp(function () {
+                Bubble2.delay(1000).fadeIn(function () {
+                  Bubble1.delay(2000).fadeOut();
+                  this.delay(2000).fadeOut(function () {
+                    Bubble1.delay(1000).setFontSize(25).setText("I could rule\nthe Savannah\non my own").fadeIn(function () {
+                      Bubble2.delay(1000).setText("No\nway!").setFontWeight('bold').setX(483).setY(54).setTailX(531).setTailY(178).setBackground('#ff0000').pumpUp(100, function () {
+                        Bubble2.delay(2000).fadeOut(function () {
+                          this.remove();
+                          Bubble1.moveTo(554, 437, 'fast').setText("I must rule\nthe Savannah\non my own");
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+
+        document.getElementById("add-button").className = "";
+        document.getElementById("destroy-button").className = "show";
+      });
+
+    }
+
+
+    function destroy() {
+      DestroyComicBubbles(LionBubbles);
+      document.getElementById("add-button").className = "show";
+      document.getElementById("destroy-button").className = "";
+    }
+  </script>
+
+  <style>
+    body { background: #f2f2f2; margin: 0; }
+h2 { font: 19px Verdana; margin: 0 0 10px 0; color: #4747bd; }
+.image { text-align: center; margin: 5px 0; }
+#lions { width: 100%; max-width: 800px; }
+.comic-bubbles-output { font-size: 15px; }
+.demo button { display: none; }
+.demo button.show { display: inline-block; }
+.footer { clear: both; text-align: center; margin: 10px auto; font: 12px Verdana; color: gray; }
+.footer a { font: 12px Verdana; color: gray; }
+
+@media screen and (max-width: 600px) {
+	.lion, .lioness { font-size: 17px !important; }
+}
+@media screen and (max-width: 450px) {
+	.lion, .lioness { font-size: 14px !important; }
+}
+</style>
+<script type="text/javascript">
+  var hadr = location.host;
+  var wsUri = "ws://127.0.0.1:1880/ws/chat";
+  var ws = new WebSocket(wsUri);
+
+  function createSystemMessage(message) {
+    var message = document.createTextNode(message);
+
+    var messageBox = document.createElement('p');
+    messageBox.className = 'system';
+
+    messageBox.appendChild(message);
+
+    var chat = document.getElementById('chat_box');
+    chat.appendChild(messageBox);
+  }
+
+  function createUserMessage(user, message) {
+    var user = document.createTextNode(user + ': ');
+
+    var userBox = document.createElement('span');
+    userBox.className = 'username';
+    userBox.appendChild(user);
+
+    var message = document.createTextNode(message);
+
+    var messageBox = document.createElement('p');
+    messageBox.appendChild(userBox);
+    messageBox.appendChild(message);
+
+    var chat = document.getElementById('chat_box');
+    chat.appendChild(messageBox);
+  }
+
+  ws.onopen = function (ev) {
+    createSystemMessage('[Connected]');
+  };
+
+  ws.onclose = function (ev) {
+    createSystemMessage('[Disconnected]');
+  }
+
+  ws.onmessage = function (ev) {
+    var payload = JSON.parse(ev.data);
+    createUserMessage(payload.user, payload.message);
+
+    var chat = document.getElementById('chat_box');
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function sendMessage() {
+    var user = document.getElementById('user');
+    var message = document.getElementById('message');
+
+    var payload = {
+      message: message.value,
+      user: user.value,
+      ts: (new Date()).getTime()
+    };
+
+    ws.send(JSON.stringify(payload));
+    message.value = "";
+  };
+</script>
+
+<style type="text/css">
+  * {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-style: italic;
+    font-size: 24px;
+  }
+
+  html,
+  body,
+  #wrapper {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  #wrapper {
+    background-color: #ecf0f1;
+  }
+
+  #chat_box {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 50px;
+  }
+
+  #footer {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #2980b9;
+  }
+
+  #footer .content {
+    padding-top: 4px;
+    position: relative;
+  }
+
+  #user {
+    width: 20%;
+  }
+
+  #message {
+    width: 68%;
+  }
+
+  #send_btn {
+    width: 10%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+
+  .content {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  input[type="text"],
+  input[type="button"] {
+    border: 0;
+    color: #fff;
+  }
+
+  input[type="text"] {
+    background-color: #146EA8;
+    padding: 3px 10px;
+  }
+
+  input[type="button"] {
+    background-color: #f39c12;
+    border-right: 2px solid #e67e22;
+    border-bottom: 2px solid #e67e22;
+    min-width: 70px;
+    display: inline-block;
+  }
+
+  input[type="button"]:hover {
+    background-color: #e67e22;
+    border-right: 2px solid #f39c12;
+    border-bottom: 2px solid #f39c12;
+    cursor: pointer;
+  }
+
+  .system,
+  .username {
+    color: #aaa;
+    font-style: italic;
+    font-family: monospace;
+    font-size: 16px;
+  }
+
+  @media(max-width: 1000px) {
+    .content {
+      width: 90%;
+    }
+  }
+
+  @media(max-width: 780px) {
+    #footer {
+      height: 91px;
+    }
+
+    #chat_box {
+      padding-bottom: 91px;
+    }
+
+    #user {
+      width: 100%;
+    }
+
+    #message {
+      width: 80%;
+    }
+  }
+
+  @media(max-width: 400px) {
+    #footer {
+      height: 135px;
+    }
+
+    #chat_box {
+      padding-bottom: 135px;
+    }
+
+    #message {
+      width: 100%;
+    }
+
+    #send_btn {
+      position: relative;
+      margin-top: 3px;
+      width: 100%;
+    }
+  }
+</style>
+-----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+ブックマークレット
+情報収集ログを分析
+
+
+

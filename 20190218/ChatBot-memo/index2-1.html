@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Moai talks</title>
+  <meta charset="utf-8">
+  <script src="comicbubbles.min.js"></script>
+  <script src="comicbubbles_editor.min.js"></script>
+  <script>
+    var MoaiBubbles;
+
+    function addComicBubbles() {
+      MoaiBubbles = new ComicBubbles("Moais", { canvas: { readonly: false } }, {
+        bubble: [
+          { id: 'b1', text: "おはようごじゃいます", x: 105,y: 45, width:  'auto', height: 'auto', fontSize: '30px', background: '#8b0000', color: '#ffffff', bubbleStyle: 'speak', tailLocation: 'nw', tailX: 521, tailY: 239, visible: false }
+        ]
+      });
+
+
+      MoaiBubbles.onBubbleStateChange(function (bubbles) {
+        for (var i = 0; i < bubbles.length; i++) {
+          var bubble = bubbles[i];
+          //onBubbleStateChange can help save data (bubble.x, bubble.y, bubble.text, etc.) with ajax to a database 
+        }
+      });
+
+      //Responsiveness
+      //To adjust bubbles position: use canvas{responsive: true} or setResponsive(true)
+      //To resize bubbles:
+      //1. Set bubble properties: width: 'auto', height: 'auto', className: 'myClass' (setWidth, setHeight, setClassName)
+      //2. Use 'myClass' in your media query to override bubble fontSize setting
+      //   e.g. @media screen and (max-width: 600px) { .myClass {font-size: 17px !important;} }
+
+      MoaiBubbles.onCanvasLoad(function () {
+
+        this.setResponsive(true); //'this' refers to MoaiBubbles
+
+        var Bubble1 = this.getBubbleById('b1');
+
+        // bubbles appear and disappear with callback functions
+        Bubble1.setClassName('lioness').delay(1000).setWidth('auto').setHeight('auto').pumpUp(
+          function () {
+            Bubble1.setText("なぞなぞを出すぞ");
+
+          });
+
+        document.getElementById("add-button").className = "";
+        document.getElementById("destroy-button").className = "show";
+      });
+
+    }
+
+
+    function destroy() {
+      DestroyComicBubbles(MoaiBubbles);
+      document.getElementById("add-button").className = "show";
+      document.getElementById("destroy-button").className = "";
+    }
+  </script>
+
+  <style>
+    body { background: #f2f2f2; margin: 0; }
+h2 { font: 19px Verdana; margin: 0 0 10px 0; color: #4747bd; }
+.image { text-align: center; margin: 5px 0; }
+#lions { width: 100%; max-width: 800px; }
+.comic-bubbles-output { font-size: 15px; }
+.demo button { display: none; }
+.demo button.show { display: inline-block; }
+.footer { clear: both; text-align: center; margin: 10px auto; font: 12px Verdana; color: gray; }
+.footer a { font: 12px Verdana; color: gray; }
+
+@media screen and (max-width: 600px) {
+	.Moai, .Moais { font-size: 17px !important; }
+}
+@media screen and (max-width: 450px) {
+	.Moai, .Moais { font-size: 14px !important; }
+}
+</style>
+</head>
+
+<body class="Moai">
+  <h2>Chat</h2>
+  <div>
+    <button id="add-button" class="show" type="button" onclick="addComicBubbles()">Add ComicBubbles to the picture</button>
+    <button id="destroy-button" type="button" onclick="destroy()">Remove ComicBubbles</button>
+  </div>
+  <div class="image">
+    <img id="Moais" src="Moai.jpg">
+  </div>
+  <div id="Moais-comic-bubbles-output"></div>
+  <br>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+雑談 辞書
+夢みるプログラム ～人工無脳・チャットボットで考察する会話と心のアルゴリズム～
+恋するプログラム
+
+
+
+はじめてのAIプログラミング―C言語で作る人工知能と人工無能2006/10/1
+小高 知宏
+
+
+
+スマートスピーカー × AIプログラミング ~自分でつくる人工知能 Amazon Echo、Google Home対応~2018/3/23
+ポンダッド
+
+
+人工無能―“考えないマシン”と話す法1987/4
+
+
+ Python初心者に送る「人工知能の作り方」
+http://sandmark.hateblo.jp/entry/2017/10/07/141339
+
+
+
+人工無能の作り方・育て方
+http://marie.saiin.net/~kisuku/munou/howto.htm
+
+
+初心者でも作れる！対話AIの作り方とAIの仕組み！
+https://www.sejuku.net/blog/54212
+
+
+人工無脳 ひまねちゃん - ソースコード
+https://crocro.com/write/web_ai/wiki.cgi?p=himane_code

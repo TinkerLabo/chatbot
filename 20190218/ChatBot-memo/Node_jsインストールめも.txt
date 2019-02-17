@@ -1,0 +1,186 @@
+Node_jsインストールめも
+
+10.15.0ｌLTSを取得＆インストール
+https://nodejs.org/en/
+
+インストール先
+C:\Program Files\nodejs\
+
+
+
+C:\Users\ken.yuasa>node -v
+v10.15.0
+
+C:\Users\ken.yuasa>npm  -v
+6.4.1
+
+
+
+npm install request
+
+
+
+download-node-func.js
+-------------------------------------------------------------------------------
+download(
+    "http://www.aozora.gr.jp/index_pages/person81.html",
+    "miyazawakenji.html",
+    function()
+    {
+	console.log("ok, kenji");
+    }
+);
+download(
+    "http://www.aozora.gr.jp/index_pages/person148.html",
+    "natumesoseki.html",
+    function()
+    {
+	console.log("ok, soseki");
+    }
+);
+
+function download(url,savepath,callback){
+    var http = require('http');
+    var fs = require('fs');
+    var outfile = fs.createWriteStream(savepath);
+    var req = http.get(url,function(res){
+        res.pipe(outfile);
+        res.on('end',function(){
+            outfile.close();
+            callback();
+        });
+    })
+}
+-------------------------------------------------------------------------------
+
+実行
+node download-node-func.js
+
+
+
+C:\Users\ken.yuasa>npm install iconv
+
+> iconv@2.3.2 install C:\Users\ken.yuasa\node_modules\iconv
+> node-gyp rebuild
+
+
+C:\Users\ken.yuasa\node_modules\iconv>if not defined npm_config_node_gyp (node "C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" rebuild )  else (node "C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\bin\node-gyp.js" rebuild )
+gyp ERR! configure error
+gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
+gyp ERR! stack     at PythonFinder.failNoPython (C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\configure.js:484:19)
+gyp ERR! stack     at PythonFinder.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\configure.js:509:16)
+gyp ERR! stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:284:29
+gyp ERR! stack     at FSReqWrap.oncomplete (fs.js:154:21)
+gyp ERR! System Windows_NT 10.0.17763
+gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild"
+gyp ERR! cwd C:\Users\ken.yuasa\node_modules\iconv
+gyp ERR! node -v v10.15.0
+gyp ERR! node-gyp -v v3.8.0
+gyp ERR! not ok
+npm WARN enoent ENOENT: no such file or directory, open 'C:\Users\ken.yuasa\package.json'
+npm WARN ken.yuasa No description
+npm WARN ken.yuasa No repository field.
+npm WARN ken.yuasa No README data
+npm WARN ken.yuasa No license field.
+
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! iconv@2.3.2 install: `node-gyp rebuild`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the iconv@2.3.2 install script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\ken.yuasa\AppData\Roaming\npm-cache\_logs\2019-01-29T01_38_50_626Z-debug.log
+
+
+
+npm install --python=python2.7
+
+
+https://gist.github.com/kamiyam/b153a30e9c3684c1093b51432d1d7709
+
+
+python3 install
+
+npm audit fix
+
+
+C:\Users\ken.yuasa>node
+> console.log('test')
+test
+undefined
+> .help
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the repl
+.help     Print this help message
+.load     Load JS from a file into the REPL session
+.save     Save all evaluated commands in this REPL session to a file
+> .exit
+
+
+pythonが無いとエラー（3系を入れたがだめっだったので2.7を入れなす・・・）
+
+（環境を切り替える方法があるはずだが・・・もやもやするが・・・省略）
+
+npm install iconv
+
+npm install jschardet
+
+
+read-sjis.jsの内容
+-----------------------------------------------------------------------------------------
+var fs = require('fs');
+var Iconv = require('iconv').Iconv;
+
+var sjis_utf8 = new Iconv('SHIFT_JIS', 'utf-8');
+
+var buf = fs.readFileSync('sample-sjis.txt');
+
+var buf2 = sjis_utf8.convert(buf);
+var txt  = buf2.toString('utf-8');
+
+console.log(txt);
+
+fs.writeFileSync("test2.txt", txt,'utf-8');
+-----------------------------------------------------------------------------------------
+
+実行
+node read-sjis.js
+
+testdata
+銀河鉄道の夜
+https://www.aozora.gr.jp/cards/000081/files/456_15050.html
+
+
+
+いまさら聞けない！npmのこれだけは知っておきたい基礎知識
+https://www.webprofessional.jp/beginners-guide-node-package-manager/
+
+Node.jsでSQLSERVERを操作する方法
+https://qiita.com/mima_ita/items/dc867fa4f316d85533b1
+
+npm install mssql
+
+
+C:\Users\ken.yuasa>npm install mecab-lite
+npm WARN ken.yuasa@1.0.0 No repository field.
+
++ mecab-lite@0.0.8
+added 1 package from 1 contributor and audited 1143 packages in 4.87s
+found 3 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+
+   ?───────────────────────────────────────────────────────────────?
+   │                                                               │
+   │      New minor version of npm available! 6.4.1 -> 6.7.0       │
+   │   Changelog: https://github.com/npm/cli/releases/tag/v6.7.0   │
+   │               Run npm install -g npm to update!               │
+   │                                                               │
+   ?───────────────────────────────────────────────────────────────?
+
+

@@ -1,0 +1,76 @@
+Start Node-RED
+ 
+Once Node-RED has started, point a browser at http://192.168.1.2:1880
+On Pi Node-RED works better with the Firefox or Chrome browser
+ 
+Use   node-red-stop                          to stop Node-RED
+Use   node-red-start                         to start Node-RED again
+Use   node-red-log                           to view the recent log output
+Use   sudo systemctl enable nodered.service  to autostart Node-RED at every boot
+Use   sudo systemctl disable nodered.service to disable autostart on boot
+ 
+To find more nodes and example flows - go to http://flows.nodered.org
+ 
+Starting as a systemd service.
+Started Node-RED graphical event wiring tool..
+10 Feb 13:34:42 - [info]
+Welcome to Node-RED
+===================
+10 Feb 13:34:42 - [info] Node-RED version: v0.18.4
+10 Feb 13:34:42 - [info] Node.js  version: v4.8.2
+10 Feb 13:34:42 - [info] Linux 4.14.34-v7+ arm LE
+10 Feb 13:34:45 - [info] Loading palette nodes
+10 Feb 13:35:03 - [info] Settings file  : /home/pi/.node-red/settings.js
+10 Feb 13:35:03 - [info] User directory : /home/pi/.node-red
+10 Feb 13:35:03 - [warn] Projects disabled : set editorTheme.projects.enabled=true to enable
+10 Feb 13:35:03 - [info] Flows file     : /home/pi/.node-red/flows_penguin2.json
+10 Feb 13:35:03 - [info] Creating new flow file
+10 Feb 13:35:03 - [info] Starting flows
+10 Feb 13:35:03 - [info] Started flows
+10 Feb 13:35:03 - [info] Server now running at http://127.0.0.1:1880/
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install mongodb-server
+$ sudo service mongod start
+$ mongo
+
+$ wget https://nodejs.org/dist/latest-v5.x/node-v5.11.0-linux-armv7l.tar.gz
+----------------------------------------------------------------------------------
+service mongodb start
+sudo apt-get install mecab libmecab-dev mecab-ipadic-utf8 python-mecab
+
+  322  node --version
+  323  sudo apt-get update
+  324  sudo apt-get upgrade
+  325  sudo apt-get install mongodb-server
+  326  python --version
+  327  sudo service mongod start
+  328  sudo apt-get install mongodb-server
+  329  reboot
+  330  cd chatBot/
+  331  ls -al
+  332  node make-dic.js 
+  333  npm install mongo-lite
+  334  npm install mecab-lite
+
+
+pi@penguin2:~/chatBot $ node make-dic.js 
+current URL string parser is deprecated, and will be removed in a future version. To use the new parser, 
+pass option { useNewUrlParser: true } to MongoClient.connect.
+DB error { [MongoError: Server at localhost:27017 reports wire version 0, 
+but this version of Node.js Driver requires at least 2 (MongoDB2.6).] name: 'MongoError' }
+p
+
+pi@penguin2:~/chatBot $ mongod --dbpath=./mongodb
+Sun Feb 10 17:43:08.418 
+
+
+ 350  npm list
+  351  npm uninstall mongodb
+  352  npm list
+  353  npm install mongodb@2.2.34
+  354  ls -al
+  355  node make-dic.js 
+  356  history
+
+  328  sudo apt-get install mongodb-server
