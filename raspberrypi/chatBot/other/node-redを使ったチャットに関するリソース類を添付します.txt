@@ -1,0 +1,50 @@
+
+node-redを使ったチャットに関するリソース類を添付します
+
+会社の休み時間にwindowsでプロトタイピングしたものを
+家に持って帰ってきて動かそうとしたら
+brewがグチャグチャになって動かなくなっており
+泣いてしまいそうです・・・最終的にはraspberryPi上に作るつもりなんですが
+追いつきません（泣）
+
+とにかく・・・
+
+mongoldb
+と
+mecab（形態素解析エンジン）
+をインストールした上でnodeの部品を用意します
+brew install mecab
+brew install mecab-ipadic
+brew install mongodb
+
+npm install mongo
+npm install mecab-lite
+
+mongoを起動します
+
+mkdir mongodb
+
+mongod --dbpath ./mongodb
+
+この状態で・・・
+
+添付したbot-dic.datを読み込んでmongoに登録します
+node make-dic.js
+
+次にチャットサーバーを起動します
+
+node chat-server.js
+
+これと先日のnode-redのweb-socket chatと
+スピーチバルーンのJS
+を組み合わせたもので人工無脳気まぐれロボットを作ろう！！といったところまで考えました
+
+
+子供達には・・別口で辞書登録する機能とかを作ってもらい
+実際に会話を成り立たせる面白さが味わえるようなものが作れたら面白いかなぁと考えています
+
+
+今日のところはここまでです
+
+
+湯浅

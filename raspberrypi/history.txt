@@ -1,0 +1,497 @@
+    1  sudo vi /etc/dhcpcd.conf 
+    2  sudo vi /etc/network/interfaces.d/wlan0
+    3  sudo vi /etc/hostapd/hostapd.conf
+    4  sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+    5  sudo vi /etc/dnsmasq.conf
+    6  sudo vi /etc/sysctl.conf
+    7  sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+    8  sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  
+    9  sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
+   10  sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+   11  sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+   12  vi /etc/rc.local 
+   13  sudo vi /etc/rc.local 
+   14  sudo vi /etc/default/hostapd
+   15  cd /var/www/html
+   16  sudo unzip /home/pi/Downloads/blockly-games-ja.zip 
+   17  sudo npm install -g bower
+   18  sudo apt-get update
+   19  sudo apt-get install apache2 dnsmasq hostapd nodejs npm
+   20  mkdir dev
+   21  cd dev
+   22  git clone https://github.com/KanoComputing/make-art
+   23  cd make-art
+   24  npm install
+   25  vi bower.json 
+   26  npm install
+   27  bower install
+   28  npm start
+   29  sudo ifdown wlan0; sudo ifup wlan0
+   30  sudo service hostapd start
+   31  sudo service dnsmasq start
+   32  sudo reboot
+   33  cd dev/make-art/
+   34  npm start
+   35  sudo shutdown -n
+   36  sudo shutdown now
+   37  cd dev/make-art/
+   38  npm start
+   39  npm start &
+   40  sudo apt-get update
+   41  sudo apt-get install -y emacs
+   42  sudo emacs /etc/hostname 
+   43  lsusb
+   44  aplay -l
+   45  shutdown -r now
+   46  lsusb
+   47  aplay -l
+   48  cd  /usr/share/alsa/
+
+
+
+/home/pi/chatBot
+   49  ll
+   50  ls -al
+   51  cd
+   52  aplay /usr/share/sounds/alsa/Front_Center.wav 
+   53  sudo raspi-config
+   54  ll
+   55  sudo lsudb
+   56  ls usb
+   57  lsusb
+   58  aplay -l
+   59  sudo vi /usr/share/alsa/alsa.conf
+   60  history
+   61  sudo vi /usr/share/alsa/alsa.conf
+   62  reboot
+   63  history
+   64  61!
+   65  sudo vi /usr/share/alsa/alsa.conf
+   66  reboot
+   67  lsusb
+   68  aplay -l
+   69  aplay -L
+   70  sudo vi /usr/share/alsa/alsa.conf
+   71  cd /usr/share/alsa/
+   72  ll
+   73  ls
+   74  ls -al
+   75  sudo rf .alsa.conf.swp 
+   76  sudo rm -rf .alsa.conf.swp 
+   77  ls -al
+   78  sudo vi /usr/share/alsa/alsa.conf
+   79  reboot
+   80  lsusb
+   81  aplay -L
+   82  sudo vi /usr/share/alsa/alsa.conf
+   83  sudo mv /usr/share/alsa/alsa.conf alsa.txt
+   84  sudo cd /usr/share/alsa/
+   85  ll
+   86  ls
+   87  #pwd
+   88  pwd
+   89  cd /usr/share/alsa/
+   90  ll
+   91  ls
+   92  cd
+   93  ls
+   94  reboot
+   95  lsusb
+   96  aplay -l
+   97  aplay -L
+   98  shutdown -r
+   99  shutdown -r now
+  100  ls -al
+  101  sudo cp alsa.conf /usr/share/alsa/
+  102  sudo ls  /usr/share/alsa/alsa.conf
+  103  aplay -L
+  104  sudo vi  /usr/share/alsa/alsa.conf
+  105  reboot
+  106  aplay -L
+  107  aplay /usr/share/sounds/alsa/Front_Center.wav 
+  108  speaker-test -t sine -f 1000
+  109  lsusb
+  110  aplay -D plughw:0,0 /usr/share/sounds/alsa/Front_Center.wav 
+  111  aplay -D plughw:1,0 /usr/share/sounds/alsa/Front_Center.wav 
+  112  shutdown
+  113  ps ax
+  114  ps -ax
+  115  ps -ax  grep vnc
+  116  sudo apt-get update
+  117  su
+  118  sudo raspi-config
+  119  ifconfig
+  120  sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer
+  121  ps -ax  grep vnc
+  122  ps -ax
+  123  ps -ax  =-098
+  124  sudo raspi-config
+  125  ps -ax | grep vnc
+  126  cd
+  127  ll
+  128  cd /etc/
+  129  ls
+  130  cd systemd
+  131  ls
+  132  vi /etc/xdg/autostart/lxpolkit.desktop
+  133  cat /etc/xdg/autostart/lxpolkit.desktop | grep NotShow
+  134  sudo apt-get install curl
+  135  cd
+  136  pwd
+  137  curl https://coderdojoutsukidai.github.io/downloads/stuff/mc.tgz
+  138  ps
+  139  ls
+  140  history
+  141  curl https://coderdojoutsukidai.github.io/downloads/stuff/mc.tgz
+  142  cd /var/www/html
+  143  sudo tar zxvf ~/mc.tgz 
+  144  ls
+  145  cd ./mc
+  146  ls
+  147  ls -al
+  148  less /etc/xdg/autostart/lxpolkit.desktop
+  149  cat /etc/xdg/autostart/lxpolkit.desktop
+  150  cat /etc/xdg/autostart/lxpolkit.desktop | grep NotShowIn
+  151  sed -e 's/NotShowIn=GNOME;KDE;MATE;/NotShowIn=GNOME;KDE;MATE;LXDE/' /etc/xdg/autostart/lxpolkit.desktop
+  152  sed -i.bak -e 's/NotShowIn=GNOME;KDE;MATE;/NotShowIn=GNOME;KDE;MATE;LXDE/' /etc/xdg/autostart/lxpolkit.desktop
+  153  sudo sed -i.bak -e 's/NotShowIn=GNOME;KDE;MATE;/NotShowIn=GNOME;KDE;MATE;LXDE/' /etc/xdg/autostart/lxpolkit.desktop
+  154  diff -u /etc/xdg/autostart/lxpolkit.desktop{,.bak}
+  155  history
+  156  ps
+  157  history
+  158  141!
+  159  curl https://coderdojoutsukidai.github.io/downloads/stuff/mc.tgz
+  160  ls
+  161  history
+  162  reboot
+  163  pwd
+  164  cd /var/www/html
+  165  sudo git clone https://github.com/CoderDojoUtsukidai/penguinBlockly.git
+  166  sudo mv penguinBlockly/public pb
+  167  sudo rm -rf penguinBlockly
+  168  sudo chown -R 501:80 pb
+  169  ls -al
+  170  history
+  171  vi penguinBlk.sh
+  172  emacs test.txt
+  173  ls
+  174  which bash
+  175  emacs test.txt 
+  176  mv test.txt yuasa0707.sh
+  177  ll
+  178  pwd
+  179  cd /var/www/html/
+  180  ll
+  181  ls -al
+  182  sudo tar zxvf ~/mc.tgz 
+  183  ifconfig
+  184  cd /var/www/html
+  185  ls -al
+  186  sudo tar zxvf ~/mc.tgz 
+  187  cd ..
+  188  ll
+  189  ls -al
+  190  mv html htmlbk
+  191  sudo mv html htmlbk
+  192  ls]
+  193  ls -al
+  194  mkdir html
+  195  cd ./htmlbk/
+  196  ¥cd  ..
+  197  ls -al
+  198  cd ..
+  199  ls -al
+  200  mkdir html
+  201  ls
+  202  sudo mkdir html
+  203  ls -al
+  204  cd ./html
+  205  mv ../pb ./
+  206  mv -rf ../pb ./
+  207  sudo mv -rf ../pb ./
+  208  sudo mv  ../pb ./
+  209  sudo mv ../htmlbk/pb ./
+  210  ls -al
+  211  sudo tar xzvf ~/mc.tgz 
+  212  ls -al
+  213  ipconfig
+  214  ifconfig
+  215  reboot
+  216  ls -al
+  217  chmod +x yuasa0707.sh 
+  218  ls -al
+  219  chmod +x yuasa0707.sh 
+  220  ls -al
+  221  sudo chmod +x yuasa0707.sh 
+  222  ls -al
+  223  chmod 777 yuasa0707.sh 
+  224  ls -al
+  225  less yuasa0707.sh 
+  226  cd ./work/
+  227  ls
+  228  tar xzvf mc.tgz 
+  229  cd /var/www/
+  230  ls -al
+  231  ifconfig
+  232  cd
+  233  ll
+  234  ls -al
+  235  history | grep tar
+  236  sudo tar xzvf pb.tgz 
+  237  git gui
+  238  bye
+  239  exit
+  240  netstat
+  241  ifconfig
+  242  cd /var/www/html
+  243  sudo tar zxvf ~/pb.tgz
+  244  sudo chown -R 501:80 pb
+  245  ls -al
+  246  history
+  247  cd /var/www/html
+  248  sudo tar zxvf ~/pb-3.tgz
+  249  ls -al
+  250  sudo chown -R 501:80 pb
+  251  ls -al
+  252  sudo shutdown -h now
+  253  ll
+  254  ps
+  255  cd /var/www/html
+  256  ls
+  257  exit
+  258  cd /var/www/html
+  259  sudo unzip ~/shooting.zip 
+  260  ls
+  261  ./shooting/
+  262  ls
+  263  exit
+  264  shutdown -h now
+  265  sudo shutdown -h now
+  266  cd /var/www/html
+  267  pwd
+  268  ls
+  269  sudo git clone https://github.com/CoderDojoUtsukidai/penguinBlockly.git
+  270  ls
+  271  sudo mv penguinBlockly/public pb
+  272  ls
+  273  cd pb
+  274  ls
+  275  cd /var/www/html
+  276  sudo rm -rf penguinBlockly
+  277  ls
+  278  ls -la
+  279  sudo chown -R 501:80 pb
+  280  cd pb
+  281  ls
+  282  ls -a;
+  283  ls -al
+  284  cd public/
+  285  ls -al
+  286  cd
+  287  cd ..
+  288  cd /var/www/html/
+  289  rm -rf ./pb
+  290  ls
+  291  sudo rm -rf ./pb
+  292  ls
+  293  ls -la
+  294  sudo git clone https://github.com/CoderDojoUtsukidai/penguinBlockly.git
+  295  ls -al
+  296  sudo mv penguinBlockly/public pb
+  297  ls
+  298  ls -al
+  299  sudo rm -rf penguinBlockly
+  300  ls
+  301  ls -al
+  302  sudo chown -R 501:80 pb
+  303  ls
+  304  ls -al
+  305  cd pb
+  306  ls
+  307  cd lib
+  308  ll
+  309  ls
+  310  cd ..
+  311  ls
+  312  cd lib
+  313  ls -al
+  314  cd ..
+  315  reboot
+  316  sudo reboot
+  317  cd /var/www/html
+  318  cd pb
+  319  webpack --mode production
+  320  ls
+  321  exit
+  322  node --version
+  323  sudo apt-get update
+  324  sudo apt-get upgrade
+  325  sudo apt-get install mongodb-server
+  326  python --version
+  327  sudo service mongod start
+  328  sudo apt-get install mongodb-server
+  329  reboot
+  330  history
+  331  cd /home/pi/.node-red
+  332  ll
+  333  ls -al
+  334  cd node_modules/
+  335  ll
+  336  ls -al
+  337  cd
+  338  ls -al
+  339  cd node-red
+  340  ls
+  341  cd /home/nol
+  342  pwd
+  343  cd ./Public/
+  344  ls -al
+  345  cd  ..
+  346  ls
+  347  pwd
+  348  cd  chatBot/
+  349  ls -al
+  350  cd node_modules/
+  351  ls -al
+  352  npm  list
+  353  cd
+  354  npm list
+  355  -+pwd
+  356  cd
+  357  pwd
+  358  find node-red
+  359  find setting.js
+  360  find settings.js
+  361  sudo find settings.js
+  362  find -name settings.js
+  363  find -name node-red
+  364  find -name node-modules
+  365  cd chatBot/
+  366  ls
+  367  find node_modules
+  368  cd 
+  369  find -name node_modules
+  370  less /usr/share/applications/Node-RED.desktop
+  371  find -name bootstrap
+  372  find -name nodes
+  373  ls
+  374  cd chatBot/
+  375  npm install node-red
+  376  ls
+  377  ll
+  378  ls -al
+  379  npm list
+  380  cd node_modules/
+  381  ls
+  382  cd ./node-red
+  383  ls
+  384  cd ./public/
+  385  ls
+  386  cd
+  387  cd  chatBot/
+  388  history
+  389  cd /home/pi/.node-red/
+  390  ls -al
+  391  emacs 
+  392  emacs settings.js 
+  393  sudo service mongod start
+  394  sudo systemctl unmask mongodb
+  395  sudo service mongod start
+  396  service mongodb start
+  397  mongo
+  398  service mongodb start
+  399  mongo
+  400  sudo apt-get install mecab libmecab-dev mecab-ipadic-utf8 python-mecab
+  401  cd chatBot/
+  402  ll
+  403  ls -al
+  404  mkdir mongodb
+  405  mongodb --dbpath=./mongodb
+  406  mongo
+  407  mongod --dbpath=./mongodb
+  408  cd chatBot/
+  409  ls -al
+  410  node make-dic.js 
+  411  npm install mongo-lite
+  412  npm install mecab-lite
+  413  history
+  414  node make-dic.js 
+  415  npm install mongodb
+  416  node make-dic.js 
+  417  mongo
+  418  node make-dic.js 
+  419  uname 
+  420  uname -a
+  421  cd ..
+  422  ls
+  423  cd ./chatBot/
+  424  ls -al
+  425  npmlist
+  426  npm list
+  427  npm uninstall mongo-lite
+  428  npm list
+  429  npm uninstall mongodb
+  430  npm list
+  431  npm install mongodb@2.2.34
+  432  ls -al
+  433  node make-dic.js 
+  434  history
+  435  ls -al
+  436  node chat-server.js 
+  437  cd chatBot/
+  438  ls -al
+  439  node make-dic.js 
+  440  exit
+  441  sudo apt-get install fcitx-mozc
+  442  exit
+  443  ifconfig
+  444  exit
+  445  cd chatBot/
+  446  node-red
+  447  pwd
+  448  ls -al
+  449  cd node_modules/node-red/public/
+  450  pwd
+  451  open  .
+  452  cd 
+  453  cd chatBot/
+  454  node-red
+  455  exit
+  456  cd chatBot/
+  457  node make-dic.js 
+  458  node node chat-server.js 
+  459  node chat-server.js 
+  460  exit
+  461  emacs /home/pi/.node-red/settings.js
+  462  cd  chatbo
+  463  cd
+  464  cd  chatBot/
+  465  mkdir mongodb
+  466  mongod --dbpath=./mongodb
+  467  ls -al
+  468  history
+  469  history > history.txt
+
+
+
+
+
+pi@penguin2:~ $ node-red
+18 Feb 00:29:00 - [info] 
+
+Welcome to Node-RED
+===================
+
+18 Feb 00:29:00 - [info] Node-RED version: v0.18.4
+18 Feb 00:29:00 - [info] Node.js  version: v4.8.2
+18 Feb 00:29:00 - [info] Linux 4.14.79-v7+ arm LE
+18 Feb 00:29:01 - [info] Loading palette nodes
+18 Feb 00:29:06 - [info] Settings file  : /home/pi/.node-red/settings.js
+18 Feb 00:29:06 - [info] HTTP Static    : /home/pi/chatBot/node_modules/node-red/public
+18 Feb 00:29:06 - [info] User directory : /home/pi/.node-red
+18 Feb 00:29:06 - [warn] Projects disabled : set editorTheme.projects.enabled=true to enable
+18 Feb 00:29:06 - [info] Flows file     : /home/pi/.node-red/flows_penguin2.json
+18 Feb 00:29:06 - [info] Server now running at http://127.0.0.1:1880/
+18 Feb 00:29:06 - [info] Starting flows
+18 Feb 00:29:06 - [info] Started flows
+
