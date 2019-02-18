@@ -3,7 +3,11 @@ memo0219
 Error loading settings file: /home/pi/.node-red/settings.js
 [SyntaxError: Block-scoped declarations (let, const, function, class) not yet supported outside strict mode]
 
+node --version
+v4.8.2
 
+npm --version
+1.4.21
 
 
 
