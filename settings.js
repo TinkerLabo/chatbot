@@ -102,7 +102,7 @@ module.exports = {
     // following property can be used to identify a directory of static content
     // that should be served at http://localhost:1880/.
     //httpStatic: '/home/nol/node-red-static/',
-    httpStatic: '/Users/kenyuasa/node_modules/node-red/public',
+    httpStatic: '/home/pi/chatBot/node_modules/node-red/public',
 
     // The maximum size of HTTP request that will be accepted by the runtime api.
     // Default: 5mb
@@ -205,9 +205,6 @@ module.exports = {
     //    context.global.os
 
     functionGlobalContext: {
-        sensor1:require('./simple-bot/chat-server-bot.js'),
-        sensor1:require('./simple-bot/chat-server.js'),
-        sensor1:require('./simple-bot/make-dic.js')
         // os:require('os'),
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})
